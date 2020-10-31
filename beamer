@@ -1,0 +1,113 @@
+\documentclass[notheorems,envcountsect,UTF8,pdfpagemode=FullScreen]{ctexbeamer}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{enumerate}
+\usefonttheme[onlymath]{serif}
+\usetheme{Boadilla}
+\usecolortheme{beaver}
+
+\usepackage{amsthm}
+\setbeamertemplate{theorem}[amsstyle]
+\setbeamertemplate{theorems}[numbered]
+
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}{引理}
+
+\theoremstyle{definition}
+\newtheorem{definition}{定义}
+
+\theoremstyle{example}
+\newtheorem{example}{例}
+
+\title{教学模拟演示}
+\author{周子涵}
+\institute{2020222010020}
+\date{2020.10.9}
+
+\begin{document}
+
+\begin{frame}
+\maketitle
+\end{frame}
+
+\begin{frame}
+\frametitle{黎曼梯度}
+\qquad 后文中所有的流形 $\mathcal{M}$ 都是黎曼流形, 并且所有的函数都是光滑的.\par
+\qquad 我们用记号 $g_x(\xi_x,\zeta_x)=\langle\xi_x,\zeta_x\rangle_x$ 来表示 $\xi_x\in T_x\mathcal{M}$ 和 $\zeta_x\in T_x\mathcal{M}$ 的内积.
+\\~\\
+\begin{definition}[黎曼梯度]
+给定流形 $\mathcal{M}$ 上的光滑标量场 $f$, 则 $f$ 在 $x$ 处的黎曼梯度 $\mathrm{grad}f(x)$ 是 $T_x\mathcal{M}$ 中满足
+$$\langle\mathrm{grad}f(x),\xi\rangle_x=\mathrm{D}f(x)[\xi], \forall \xi\in T_x\mathcal{M}$$
+的唯一元素.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\frametitle{嵌入子流形}
+\qquad 我们管流形 $\mathcal{N}$ 叫做流形 $\mathcal{M}$ 的一个嵌入子流形, 如果 $\mathcal{N}\subset\mathcal{M}$ 且存在一个嵌入映射 $F:\mathcal{N}\to\mathcal{M}$.
+\\~\\
+\begin{example}[单位球面]
+$S^n:=\{x\in\mathbb{R}^{n+1}:x^Tx=1\}$ 是 $\mathbb{R}^{n+1}$ 的一个嵌入子流形.
+\end{example}
+\begin{example}[Stiefel 流形]
+$\mathrm{St}(p,n):=\{X\in\mathbb{R}^{n\times p}:X^TX=I_p\}$ 是 $\mathbb{R}^{n\times p}$ 的一个嵌入子流形.
+\end{example}
+
+\qquad 如果 $\mathcal{M}$ 是 $\mathbb{R}^n$ 的一个嵌入子流形, 则任意 $x\in\mathcal{M}$ 的切空间是 $\mathbb{R}^n$ 的一个仿射子空间. 我们用 $\mathrm{P}_x$ 和 $\mathrm{P}^\perp_x$ 分别表示到 $T_x\mathcal{M}$ 上的投影算子及其正交补, 可证明 $\mathrm{grad}f|_{\mathcal{M}}(x)=\mathrm{P}_x\mathrm{grad}f(x)$.
+\end{frame}
+
+
+\begin{frame}
+\frametitle{收缩}
+\begin{definition}[收缩]
+流形 $\mathcal{M}$ 上的光滑映射 $R:T\mathcal{M}\to\mathcal{M}$ 如果带有如下性质, 则叫做 $\mathcal{M}$ 上的一个收缩.
+\begin{itemize}
+\item[(i)] $R_x(0_x)=x$;
+\item[(ii)] $\mathrm{D}R_x(0_x)=\mathrm{id}_{T_x\mathcal{M}}$.
+\end{itemize}
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\frametitle{收缩}
+\begin{lemma}
+假设 $\mathcal{M}$ 是一个向量空间 $\mathcal{E}$ 的嵌入子流形, 且 $\mathcal{N}$ 是满足 $\dim(\mathcal{M})+\dim(\mathcal{N})=\dim(\mathcal{E})$ 的流形. 若存在微分同胚
+$$\phi:\mathcal{M}\times\mathcal{N}\to\mathcal{E}_*:(F,G)\mapsto\phi(F,G),$$
+其中 $\mathcal{E}_*$ 是 $\mathcal{E}$ 的一个开子集, 且存在一个中性元 $I\in\mathcal{N}$ 满足 $\phi(F,I)=F,\quad\forall F\in\mathcal{M}$.
+则如下定义的映射是 $\mathcal{M}$ 上的一个收缩.
+$$R_X(\xi):=\pi_1(\phi^{-1}(X+\xi)),$$
+其中 $\pi_1:\mathcal{M}\times\mathcal{N}\to\mathcal{M}:(F,G)\mapsto F$ 是像为第一个因子的投影映射. 
+\end{lemma}
+\end{frame}
+
+\begin{frame}
+\frametitle{具体例子}
+\qquad 为了给出 Stiefel 流形上一个具体的收缩, 我们需要先证明如下定理.
+\\~\\
+\begin{theorem}[极分解]
+若 $A$ 为 $n\times p$ 列满秩矩阵, 则它可以分解为
+$$A=QP,$$
+其中 $Q\in\mathrm{St}(p,n)$, $P$ 为 $p\times p$ 正定矩阵.
+\end{theorem}
+\begin{proof}
+令 $Q=A(A^TA)^{-1/2},\ P=(A^TA)^{1/2}$ 即可.
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{具体例子}
+\qquad 首先我们不加证明地指出, Stiefel 流形上的两个投影算子为
+$\mathrm{P}_X\xi=(I-XX^T)\xi+X\mathrm{skew}(X^T\xi)$ 和 $\mathrm{P}_X^\bot\xi=X\mathrm{sym}(X^T\xi).$
+\\~\\
+\qquad 用 $\mathcal{S}_{\mathrm{sym}+}(n)$ 表示所有 $n$ 阶正定矩阵构成的集合, 由于
+$$\phi:\mathrm{St}(p,n)\times\mathcal{S}_{\mathrm{sym}+}\to\mathbb{R}^{n\times p}_*:(Q,P)\mapsto QP$$
+是微分同胚, 由前文引理可求得
+$$R_X(\xi)=(X+\xi)[(X^T+\xi^T)(X+\xi)]^{-\frac{1}{2}}=(X+\xi)(I_p+\xi^T\xi)^{-\frac{1}{2}}$$
+就是 Stiefel 流形上的一个收缩.
+\end{frame}
+
+\end{document}
